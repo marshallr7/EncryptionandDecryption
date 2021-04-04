@@ -75,7 +75,7 @@ void decrypt(char string[], int length) {
     int number = tolower(string[i]) - 20;
     
 
-    printf("%c", number);
+    printf("%d ", decryptNumberCheck(number));
   }
 
 }
@@ -84,12 +84,25 @@ int encryptNumberCheck(int number) {
   int newNumber;
   if (number > 122) {
       number = number - 122;
-      newNumber = 97 + number;
+      newNumber = 96 + number;
       return newNumber;
     } else if (number < 97) {
-      number = number + 97;
+      number = number + 96;
       return newNumber;
     } else {
       return number;
     }
 }
+
+
+int decryptNumberCheck(int number) {
+  int newNumber;
+  if (number > 116) {
+      number = number - 115;
+      newNumber = 96 + number;
+      return newNumber;
+    } else {
+      return number;
+    }
+}
+
