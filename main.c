@@ -1,5 +1,5 @@
 // AUTHOR: Marshall Patterson
-// FILENAME: encryption.cpp
+// FILENAME: encryption.c
 // SPECIFICATION: encrypt and decrypt a string
 // FOR: CS 1412 Programming Principles 2 Section 504 
 
@@ -8,7 +8,7 @@
 #include <string.h>
 #include <ctype.h>
 #define STRSIZ 255
-#define ENCRYPT 0
+#define ENCRYPT 1
 
 void decrypt(char string[], int length);
 void encrypt(char string[], int length);
@@ -18,7 +18,7 @@ int encryptNumberCheck(int number);
 int decryptNumberCheck(int number);
 
 int main(void) {
-if (ENCRYPT) {
+// if (ENCRYPT) {
   //CREATE FILE
   freopen("encrypt.txt","w+",stdout);
 
@@ -29,7 +29,7 @@ if (ENCRYPT) {
   fgets(buff, STRSIZ, (FILE*)fp);
   encrypt(buff, STRSIZ);
   fclose(fp);
-} else {
+// } else {
   //CREATE FILE
   freopen("decrypt.txt","w+",stdout);
 
@@ -41,7 +41,7 @@ if (ENCRYPT) {
   decrypt(decr, STRSIZ);
   
   fclose(file);
-}
+// }
 
 
   return 0;
@@ -54,12 +54,16 @@ if (ENCRYPT) {
 void encrypt(char string[], int length) {
   int i;
   char encryptedString[STRSIZ];
-  printf("encrypted string:\n");
   for (i = 0; i <= length &&  tolower(string[i]) != '\0'; i++) {
-
+    if (isspace(string[i])) {
+      printf(" ");
+    } else if (isalpha(string[i])){
     int number = tolower(string[i]) + 20;
 
     printf("%c", encryptNumberCheck(number));
+    } else {
+      printf("%c", string[i]);
+    }
     
   }
 }
@@ -70,16 +74,24 @@ void encrypt(char string[], int length) {
 // PURPOSE: decrypt a string
 void decrypt(char string[], int length) {
   int i;
-  printf("decrypted string:\n");
   for (i = 0; i <= length &&  tolower(string[i]) != '\0'; i++) {
+    if (isspace(string[i])) {
+      printf(" ");
+    } else if (isalpha(string[i])){
     int number = tolower(string[i]);
-    
 
     printf("%c", decryptNumberCheck(number));
+    } else {
+      printf("%c", string[i]);
+    }
   }
 
 }
 
+// NAME: encryptNumberCheck
+// INPUT Param.: int umber
+// OUTPUT Param.: lower case ascii code number
+// PURPOSE: loop through nubmers and check if in range
 int encryptNumberCheck(int number) {
   int newNumber;
   if (number > 122) {
@@ -94,13 +106,16 @@ int encryptNumberCheck(int number) {
     }
 }
 
-
+// NAME: decryptNumberCheck
+// INPUT Param.: int umber
+// OUTPUT Param.: lower case ascii code number
+// PURPOSE: loop through nubmers and check if in range
 int decryptNumberCheck(int number) {
   int newNumber;
   if (number > 116) {
     return number - 20;
     } else {
-      newNumber = number + 20;
+      newNumber = number + 6;
       return newNumber;
     }
 }
