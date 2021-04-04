@@ -72,10 +72,10 @@ void decrypt(char string[], int length) {
   int i;
   printf("decrypted string:\n");
   for (i = 0; i <= length &&  tolower(string[i]) != '\0'; i++) {
-    int number = tolower(string[i]) - 20;
+    int number = tolower(string[i]);
     
 
-    printf("%d ", decryptNumberCheck(number));
+    printf("%c", decryptNumberCheck(number));
   }
 
 }
@@ -98,11 +98,10 @@ int encryptNumberCheck(int number) {
 int decryptNumberCheck(int number) {
   int newNumber;
   if (number > 116) {
-      number = number - 115;
-      newNumber = 96 + number;
-      return newNumber;
+    return number - 20;
     } else {
-      return number;
+      newNumber = number + 20;
+      return newNumber;
     }
 }
 
