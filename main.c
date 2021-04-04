@@ -8,7 +8,7 @@
 #include <string.h>
 #include <ctype.h>
 #define STRSIZ 255
-#define ENCRYPT 1
+// #define ENCRYPT 1
 
 void decrypt(char string[], int length);
 void encrypt(char string[], int length);
