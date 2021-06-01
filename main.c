@@ -1,9 +1,3 @@
-// AUTHOR: Marshall Patterson
-// FILENAME: encryption.c
-// SPECIFICATION: encrypt and decrypt a string
-// FOR: CS 1412 Programming Principles 2 Section 504 
-
-
 #include <stdio.h>
 #include <string.h>
 #include <ctype.h>
